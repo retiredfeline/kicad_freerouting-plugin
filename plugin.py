@@ -58,6 +58,7 @@ class FreeRoutingPlugin(pcbnew.ActionPlugin):
         self.module_rules = filename + '.' + config['module']['rules_ext']
         self.module_org_output = self.board_prefix + '.' + config['module']['output_ext']
         self.module_org_rules = self.board_prefix + '.' + config['module']['rules_ext']
+        self.module_threads = config['module']['threads'] if 'threads' in config['module'] else ''
        
         # Remove previous temp files
         try:
@@ -96,6 +97,10 @@ class FreeRoutingPlugin(pcbnew.ActionPlugin):
         
         # Run freerouting with -do
         self.module_command = [self.java_path, "-jar", self.module_path, "-de", self.module_input, "-do", self.module_output]
+
+        # set number of threads if specified
+        if self.module_threads:
+            self.module_command += ["-mt", self.module_threads]
         
         if self.SPECCTRA:
 
