@@ -204,7 +204,7 @@ class FreeRoutingPlugin(pcbnew.ActionPlugin):
                 * pcbnew.ImportSpecctraSES
                 ---
                 Try development nightly build:
-                * http://kicad-pcb.org/download/
+                * https://www.kicad.org/download/
                 """)
         else:
             self.RunSteps()
